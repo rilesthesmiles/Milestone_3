@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" type="image/x-icon">
+    <title>Pokemon Cards</title>
+    <style>
+        /* Assuming your CSS is in a file like 'styles.css' inside a 'static/css' directory */
+        body {
+            background-size: cover;
+	    font-family: "Helvetica Neue", Arial, sans-serif;
+            /* Other background properties you may want to set */
+        }
+        
+        .card-container {
+	    border: 12px solid #2675ba;
+    	    background-color: #ffcc01;
+    	    padding: 10px;
+    	    display: inline-block;
+	    width: 200px;
+	    margin: 10px;
+	    border-radius: 15px;
+	}
+
+        .card-image {
+            max-width: 100%;
+        }
+
+        .card-title {
+	    color: black;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .card-details {
+            font-size: 14px;
+            color: black;
+        }
+{% comment %} 
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        } {% endcomment %}
+    </style>
+</head>
+<body style="background-image: url('https://preview.redd.it/battle-arena-pokemon-v0-ovenrje7axna1.jpg?width=1080&crop=smart&auto=webp&s=9d00aed570b4f105d9aa9f54eabd1084573400f9'); background-size: cover; color: white;">
+    <center>
+    <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/404px-International_Pok%C3%A9mon_logo.svg.png?20150121202211" /></div>
+
+    <div class="card-grid">
+        {% for pokemon_card in stuff %}
+        <div class="card-container">
+            <img class="card-image" src="{% static 'img/'|add:pokemon_card.img_url %}" alt="{{ pokemon_card.name }}">
+            <div class="card-title">{{ pokemon_card.name }}</div>
+            <div class="card-details">
+                HP: {{ pokemon_card.HP }}<br>
+                Type: {{ pokemon_card.type }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</center>
+</body>
+</html>
